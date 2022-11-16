@@ -15,7 +15,8 @@ class Encoder {
     byte is_ec_push = 0;
 
   public:
-    void init(int CLK, int DT, int BTN);
+    Encoder(int clk, int dt, int btn);
+    void begin();
     void read_input();
     byte check_ec_right();
     byte check_ec_left();

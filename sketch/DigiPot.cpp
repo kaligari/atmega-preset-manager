@@ -1,14 +1,14 @@
 #include "DigiPot.h"
 
-void DigiPot::init(int clk, int miso, int mosi, int cs, int ready, byte* i_preset, byte* i_redraw) {
+DigiPot::DigiPot(int clk, int miso, int mosi, int cs, int ready) {
   CLK = clk;
   MISO = miso;
   MOSI = mosi;
   CS = cs;
   READY = ready;
-  preset = i_preset;
-  redraw = i_redraw;
+}
 
+void DigiPot::init() {
   pinMode(CLK, OUTPUT);
   pinMode(MISO, OUTPUT);
   pinMode(MOSI, OUTPUT);

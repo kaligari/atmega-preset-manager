@@ -5,6 +5,14 @@
 #include "DigiPot.h"
 #include <LiquidCrystal.h>
 
+#include "PresetManager.h"
+
+#define LCD_RS 6
+#define LCD_ENABLE 5
+#define LCD_D0 10
+#define LCD_D1 9
+#define LCD_D2 8
+#define LCD_D3 7
 #define ENCODER_CLK 2
 #define ENCODER_DT  3
 #define ENCODER_BTN 4
@@ -19,20 +27,21 @@ byte preset[4] = { 0, 0, 0, 0 };
 byte redraw = 0;
 int debug[2] = { 999, 999 };
 
-Encoder encoder;
+Encoder encoder(ENCODER_CLK, ENCODER_DT, ENCODER_BTN);
 UserInterface ui;
 Memory memory;
 MIDIControl midi_c;
-DigiPot digipot;
+DigiPot digipot(DIGIPOT_CLK, DIGIPOT_MISO, DIGIPOT_MOSI, DIGIPOT_CS, DIGIPOT_READY);
 LiquidCrystal lcd(6, 5, 10, 9, 8, 7);
+PresetManager presetManager(LCD_RS, LCD_ENABLE, LCD_D0, LCD_D1, LCD_D2, LCD_D3, ENCODER_CLK, ENCODER_DT, ENCODER_BTN, DIGIPOT_CLK, DIGIPOT_MISO, DIGIPOT_MOSI, DIGIPOT_CS, DIGIPOT_READY);
 
 MIDI_CREATE_DEFAULT_INSTANCE();
 
 void setup() {
   // Serial.begin(31250);
-  memory.init(&preset_number, preset);
-  encoder.init(ENCODER_CLK, ENCODER_DT, ENCODER_BTN);
-  digipot.init(DIGIPOT_CLK, DIGIPOT_MISO, DIGIPOT_MOSI, DIGIPOT_CS, DIGIPOT_READY, preset, &redraw);
+  // memory.init(&preset_number, preset);
+  encoder.begin();
+  digipot.init();
   ui.init(&lcd, &encoder, &memory, &preset_number, preset, &redraw, &digipot);
   midi_c.init(&preset_number, &redraw, preset, &memory, &digipot);
 

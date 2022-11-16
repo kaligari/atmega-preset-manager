@@ -1,9 +1,12 @@
 #include "Encoder.h"
 
-void Encoder::init(int clk, int dt, int btn) {
+Encoder::Encoder(int clk, int dt, int btn) {
   CLK = clk;
   DT = dt;
   BTN = btn;
+}
+
+void Encoder::begin() {
   pinMode(CLK, INPUT);
   pinMode(DT, INPUT);
   pinMode(BTN, INPUT_PULLUP);
