@@ -42,3 +42,82 @@ void PresetManager::drawNumber() {
   lcd->setCursor(3, 1);
   lcd->write(8);
 }
+
+void PresetManager::drawMenuHeader() {
+  byte startChar = (10 - strlen(submenu[submenu_state].name)) / 2;
+  lcd->setCursor(5 + startChar, 0);
+  lcd->print(submenu[submenu_state].name);
+  if(menu_state == 1) {
+    lcd->setCursor(4, 0);
+    lcd->print("<");
+    lcd->setCursor(15, 0);
+    lcd->print(">");
+  }
+}
+
+void PresetManager::drawMenuValue() {
+  if(submenu[submenu_state].type != ROUTE_PRESET_EDIT) {
+    return;
+  }
+  byte current_value = preset[submenu[submenu_state].param1];
+  byte digitLength = preset[submenu[submenu_state].param1];
+  byte count = 0;
+  do {
+    digitLength /= 10;
+    ++count;
+  } while (digitLength != 0);
+
+  byte startChar = (10 - count) / 2;
+  lcd->setCursor(5 + startChar, 1);
+  lcd->print(preset[submenu[submenu_state].param1]);
+  if(menu_state == 2 && current_value > submenu[submenu_state].minVal) {
+    lcd->setCursor(4, 1);
+    lcd->print("<");
+  }
+  if(menu_state == 2 && current_value < submenu[submenu_state].maxVal) {
+    lcd->setCursor(15, 1);
+    lcd->print(">");
+  }
+}
+
+void PresetManager::drawMenuDialog() {
+  if(submenu[submenu_state].type != ROUTE_DIALOG) {
+    return;
+  }
+  if(menu_state == 2 && submenu_dialog == ROUTE_DIALOG_YES) {
+    lcd->setCursor(8, 1);
+    lcd->print("Yes");
+  }
+  if(menu_state == 2 && submenu_dialog == ROUTE_DIALOG_NO) {
+    lcd->setCursor(8, 1);
+    lcd->print("No");
+  }
+}
+
+void PresetManager::drawMainView() {
+  lcd->setCursor(5, 0);
+  lcd->print("Dly Fbk Mix");
+  lcd->setCursor(5, 1);
+  lcd->print(preset[0]);
+  lcd->setCursor(9, 1);
+  lcd->print(preset[1]);
+  lcd->setCursor(13, 1);
+  lcd->print(preset[2]);
+}
+
+void PresetManager::refreshScreen() {
+  if(redraw == 0) {
+    return;
+  }
+  lcd->clear();
+  drawNumber();
+  if(menu_state == 0) {
+    drawMainView();
+  }
+  if(menu_state == 1 || menu_state == 2) {
+    drawMenuHeader();
+    drawMenuValue();
+    drawMenuDialog();
+  }
+  redraw = 0;
+}

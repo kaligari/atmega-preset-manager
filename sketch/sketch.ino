@@ -41,7 +41,7 @@ void setup() {
   // Serial.begin(31250);
   // memory.init(&preset_number, preset);
   encoder.begin();
-  digipot.init();
+  digipot.begin();
   ui.init(&lcd, &encoder, &memory, &preset_number, preset, &redraw, &digipot);
   midi_c.init(&preset_number, &redraw, preset, &memory, &digipot);
 
@@ -51,6 +51,7 @@ void setup() {
 }
 
 void loop() {
+  presetManager.loop();  
   midi_c.handle_input();
   encoder.read_input();
   ui.handle_input();

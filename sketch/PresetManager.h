@@ -1,12 +1,21 @@
 #ifndef PresetManager_h
 #define PresetManager_h
 
+#define ROUTE_PRESET_EDIT 0
+#define ROUTE_GO_TO_MENU 1
+#define ROUTE_GO_TO_SUBMENU 2
+#define ROUTE_DIALOG 3
+
+#define ROUTE_DIALOG_NO 0
+#define ROUTE_DIALOG_YES 1
+
 #include <Arduino.h>
 #include <LiquidCrystal.h>
 #include <EEPROM.h>
 #include <MIDI.h>
 #include "Encoder.h"
 #include "DigiPot.h"
+#include "struct.h"
 
 // Define your transport
 extern MIDI_NAMESPACE::SerialMIDI<HardwareSerial> serialMIDI;
@@ -29,6 +38,13 @@ class PresetManager {
     byte preset_number = 0;
     byte preset[4] = { 0, 0, 0, 0 };
     byte redraw = 0;
+    byte menu_state = 0;
+    byte submenu_state = 0;
+    byte submenu_size = 0;
+    byte submenu_dialog = ROUTE_DIALOG_YES;
+    struct menuItem submenu[6];
+
+    void handleInput();
 
     // EEPROM
     void readPreset();
@@ -40,6 +56,12 @@ class PresetManager {
     // LCD
     void LCDBegin();
     void drawNumber();
+    void drawMenuHeader();
+    void drawMenuValue();
+    void drawMenuDialog();
+    void drawMainView();
+    void refreshScreen();
+
     byte CC[40][8] = {
       // 0
       {

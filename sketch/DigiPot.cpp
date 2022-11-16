@@ -8,7 +8,7 @@ DigiPot::DigiPot(int clk, int miso, int mosi, int cs, int ready) {
   READY = ready;
 }
 
-void DigiPot::init() {
+void DigiPot::begin() {
   pinMode(CLK, OUTPUT);
   pinMode(MISO, OUTPUT);
   pinMode(MOSI, OUTPUT);
