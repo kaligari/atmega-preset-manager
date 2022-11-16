@@ -5,7 +5,7 @@ void PresetManager::LCDBegin() {
   lcd->setCursor(0, 0);
   lcd->print("Multiefekt");
   lcd->setCursor(0, 1);
-  lcd->print("v1.2.2137");
+  lcd->print("v1.3.2137");
   delay(1000);
   lcd->clear();
 }
@@ -96,7 +96,7 @@ void PresetManager::drawMenuDialog() {
 
 void PresetManager::drawMainView() {
   lcd->setCursor(5, 0);
-  lcd->print("Dly Fbk Mix");
+  lcd->print("Mix Dly Fbk");
   lcd->setCursor(5, 1);
   lcd->print(preset[0]);
   lcd->setCursor(9, 1);

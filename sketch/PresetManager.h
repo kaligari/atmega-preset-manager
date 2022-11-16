@@ -9,8 +9,9 @@
 #define ROUTE_DIALOG_NO 0
 #define ROUTE_DIALOG_YES 1
 
-#define DELAY 0
-#define FEEDBACK 1
+#define MIX 0
+#define DELAY 1
+#define FEEDBACK 2
 
 #include <Arduino.h>
 #include <LiquidCrystal.h>
@@ -48,6 +49,7 @@ class PresetManager {
     // char* saveMenu[3] = ["Yes", "No"];
 
     void handleInput();
+    void setDigiPots();
 
     // EEPROM
     void readPreset();

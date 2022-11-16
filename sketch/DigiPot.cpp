@@ -19,8 +19,6 @@ void DigiPot::begin() {
   SPI.begin();
   SPI.setBitOrder(MSBFIRST);
   SPI.setDataMode(SPI_MODE0);
-
-  wakeUp();
 }
 
 void DigiPot::sendFrame(byte instruction, byte data1 = 0, byte data2 = 0) {

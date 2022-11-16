@@ -9,8 +9,7 @@ void PresetManager::handleInput() {
         preset_number = 0;
       }
       readPreset();
-      digipot->setValue(0, preset[0]);
-      digipot->setValue(1, preset[1]);
+      setDigiPots();
       redraw = 1;
     }
     if(encoder->check_ec_left() == 1) {
@@ -20,8 +19,7 @@ void PresetManager::handleInput() {
         preset_number = 99;
       }
       readPreset();
-      digipot->setValue(0, preset[0]);
-      digipot->setValue(1, preset[1]);
+      setDigiPots();
       redraw = 1;
     }
     if(encoder->check_ec_push() == 1) {
@@ -70,8 +68,7 @@ void PresetManager::handleInput() {
         case ROUTE_PRESET_EDIT:
           if(preset[submenu[submenu_state].param1] < submenu[submenu_state].maxVal) {
             preset[submenu[submenu_state].param1]++;
-            digipot->setValue(0, preset[0]);
-            digipot->setValue(1, preset[1]);
+            setDigiPots();
             redraw = 1;
           }
           break;
@@ -86,8 +83,7 @@ void PresetManager::handleInput() {
         case ROUTE_PRESET_EDIT:
           if(preset[submenu[submenu_state].param1] > submenu[submenu_state].minVal) {
             preset[submenu[submenu_state].param1]--;
-            digipot->setValue(0, preset[0]);
-            digipot->setValue(1, preset[1]);
+            setDigiPots();
             redraw = 1;
           }
           break;
@@ -110,8 +106,7 @@ void PresetManager::handleInput() {
           }
           if(submenu_dialog == ROUTE_DIALOG_NO) {
             readPreset();
-            digipot->setValue(0, preset[0]);
-            digipot->setValue(1, preset[1]);
+            setDigiPots();
             menu_state = 1;
           }
           break;

@@ -6,25 +6,29 @@ void PresetManager::readMIDI() {
             case midi::ProgramChange:
               preset_number = MIDI.getData1() + 1;
               readPreset();
-              digipot->setValue(0, preset[0]);
-              digipot->setValue(1, preset[1]);
+              setDigiPots();
               redraw = 1;
               break;
             case midi::ControlChange:
               if(MIDI.getData1() == 27) {
-                preset[0] = MIDI.getData2() * 2;
-                digipot->setValue(0, preset[0]);
+                preset[DELAY] = MIDI.getData2() * 2;
+                // digipot->setValue(0, preset[0]);
+                setDigiPots();
               }
               if(MIDI.getData1() == 7) {
-                preset[1] = MIDI.getData2() * 2;
-                digipot->setValue(1, preset[1]);
+                preset[FEEDBACK] = MIDI.getData2() * 2;
+                setDigiPots();
+              }
+              if(MIDI.getData1() == 1) {
+                preset[MIX] = MIDI.getData2();
+                redraw = 1;
               }
               if(MIDI.getData1() == 2) {
-                preset[1] = MIDI.getData2();
+                preset[DELAY] = MIDI.getData2();
                 redraw = 1;
               }
               if(MIDI.getData1() == 3) {
-                preset[2] = MIDI.getData2();
+                preset[FEEDBACK] = MIDI.getData2();
                 redraw = 1;
               }
               break;
