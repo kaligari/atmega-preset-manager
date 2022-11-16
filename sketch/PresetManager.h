@@ -27,10 +27,7 @@ extern MIDI_NAMESPACE::MidiInterface<MIDI_NAMESPACE::SerialMIDI<HardwareSerial>>
 
 class PresetManager {
   public:
-    PresetManager(uint8_t lcd_rs, uint8_t lcd_enable, uint8_t lcd_d0, uint8_t lcd_d1,
-      uint8_t lcd_d2, uint8_t lcd_d3, byte encoder_clk, byte encoder_dt,
-      byte encoder_btn, byte digipot_clk, byte digipot_miso, byte digipot_mosi,
-      byte digipot_cs, byte digipot_ready);
+    PresetManager(LiquidCrystal* i_lcd, Encoder* i_encoder, DigiPot* i_digipot);
     void begin();
     void loop();
   private:
