@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "author": "Sebastian Kopeć",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-nano", "id": "nano", "top": 98, "left": -9.33, "attrs": {} },
+    { "type": "wokwi-lcd1602", "id": "lcd1", "top": -223.7, "left": 2.67, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": -70.48,
+      "left": 168.22,
+      "attrs": { "value": "220" }
+    },
+    { "type": "wokwi-ky-040", "id": "encoder1", "top": -20.93, "left": -195.66, "attrs": {} }
+  ],
+  "connections": [
+    [ "nano:10", "lcd1:D4", "gold", [ "v-149.19", "h5.75" ] ],
+    [ "nano:9", "lcd1:D5", "gold", [ "v-149.65", "h4.37" ] ],
+    [ "nano:8", "lcd1:D6", "gold", [ "v-149.65", "h100.9" ] ],
+    [ "nano:7", "lcd1:D7", "gold", [ "v-150.11", "h104.88" ] ],
+    [ "nano:GND.2", "lcd1:K", "black", [ "v-138.23", "h58.7" ] ],
+    [ "nano:GND.2", "lcd1:VSS", "black", [ "v-137.32", "h-27.19" ] ],
+    [ "r1:1", "lcd1:A", "red", [ "v0" ] ],
+    [ "lcd1:VDD", "nano:5V", "red", [ "v51.96", "h198.78", "v229.97", "h-127.58" ] ],
+    [ "nano:5V", "r1:2", "red", [ "v28.8", "h125.88", "v-249.68" ] ],
+    [ "nano:GND.2", "encoder1:GND", "black", [ "v-137.33", "h-163.64", "v59.77" ] ],
+    [ "encoder1:VCC", "nano:5V", "red", [ "h321.99", "v172.76", "h-80.67" ] ],
+    [ "encoder1:SW", "nano:4", "violet", [ "h0" ] ],
+    [ "encoder1:DT", "nano:3", "violet", [ "h0" ] ],
+    [ "encoder1:CLK", "nano:2", "violet", [ "h0" ] ],
+    [ "nano:5", "lcd1:E", "green", [ "v-150.18", "h-0.55" ] ],
+    [ "nano:6", "lcd1:RS", "green", [ "v-150.42", "h40.14" ] ]
+  ]
+}
