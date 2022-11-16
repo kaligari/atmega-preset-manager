@@ -9,6 +9,9 @@
 #define ROUTE_DIALOG_NO 0
 #define ROUTE_DIALOG_YES 1
 
+#define DELAY 0
+#define FEEDBACK 1
+
 #include <Arduino.h>
 #include <LiquidCrystal.h>
 #include <EEPROM.h>
@@ -43,6 +46,9 @@ class PresetManager {
     byte submenu_size = 0;
     byte submenu_dialog = ROUTE_DIALOG_YES;
     struct menuItem submenu[6];
+
+    // char* switchMenu[3] = ["Clean", "Crunch", "Solo"];
+    // char* saveMenu[3] = ["Yes", "No"];
 
     void handleInput();
 

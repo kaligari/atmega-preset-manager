@@ -17,7 +17,7 @@ class Encoder {
   public:
     Encoder(int clk, int dt, int btn);
     void begin();
-    void read_input();
+    void readInput();
     byte check_ec_right();
     byte check_ec_left();
     byte check_ec_push();

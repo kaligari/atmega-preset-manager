@@ -12,7 +12,7 @@ void Encoder::begin() {
   pinMode(BTN, INPUT_PULLUP);
 }
 
-void Encoder::read_input() {
+void Encoder::readInput() {
   // if(is_ec_right == 1 || is_ec_left == 1) {
   //   return;
   // }

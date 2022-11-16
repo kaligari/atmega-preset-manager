@@ -16,8 +16,8 @@ void PresetManager::begin() {
   MIDI.begin(1);
   
   digipot->begin();
-  digipot->reset();
-  digipot->wake_up();
+  // digipot->reset();
+  // digipot->wake_up();
 
   submenu[0].name = "Delay";
   submenu[0].type = ROUTE_PRESET_EDIT;
@@ -54,13 +54,13 @@ void PresetManager::begin() {
   submenu_size = sizeof(submenu)/sizeof(menuItem);
 
   readPreset();
-  digipot->set_value(0, preset[0]);
-  digipot->set_value(1, preset[1]);
+  digipot->setValue(0, preset[0]);
+  digipot->setValue(1, preset[1]);
 }
 
 void PresetManager::loop() {
   readMIDI();
-  encoder->read_input();
+  encoder->readInput();
   handleInput();
   refreshScreen();
 }
