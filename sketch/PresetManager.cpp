@@ -11,15 +11,7 @@ PresetManager::PresetManager(uint8_t lcd_rs, uint8_t lcd_enable, uint8_t lcd_d0,
   }
 
 void PresetManager::begin() {
-  // LCD
-  lcd->begin(16, 2);
-  lcd->setCursor(0, 0);
-  lcd->print("Multiefekt");
-  lcd->setCursor(0, 1);
-  lcd->print("v1.2.2137");
-  delay(1000);
-  lcd->clear();
-  
-  // Encoder
+  LCDBegin();
   encoder->begin();
+  MIDI.begin(1);
 }
