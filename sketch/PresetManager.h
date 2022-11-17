@@ -49,7 +49,7 @@ class PresetManager {
     byte submenu_state = 0;
     byte submenu_size = 0;
     byte submenu_dialog = ROUTE_DIALOG_YES;
-    struct menuItem submenu[6];
+    struct menuItem submenu[7];
 
     // char* switchMenu[3] = ["Clean", "Crunch", "Solo"];
     // char* saveMenu[3] = ["Yes", "No"];
