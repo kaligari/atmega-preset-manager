@@ -1,10 +1,16 @@
 #ifndef PresetManager_h
 #define PresetManager_h
 
-#define ROUTE_PRESET_EDIT 0
-#define ROUTE_GO_TO_MENU 1
-#define ROUTE_GO_TO_SUBMENU 2
-#define ROUTE_DIALOG 3
+// possible manu states
+#define MENU_MAIN_VIEW 0
+#define MENU_PRESET_VIEW 1
+#define MENU_PRESET_EDIT 2
+
+// route types
+#define ROUTE_PRESET_EDIT_DIGIPOTS 0
+#define ROUTE_PRESET_EDIT_RELAYS 1
+#define ROUTE_PRESET_STORE 2
+#define ROUTE_GO_TO_ROUTE 3
 
 #define ROUTE_DIALOG_NO 0
 #define ROUTE_DIALOG_YES 1
@@ -63,7 +69,6 @@ class PresetManager {
     void drawNumber();
     void drawMenuHeader();
     void drawMenuValue();
-    void drawMenuDialog();
     void drawMainView();
     void refreshScreen();
 

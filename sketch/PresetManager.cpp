@@ -17,37 +17,40 @@ void PresetManager::begin() {
   digipot->wakeUp();
   digipot->wakeUp();
 
-  submenu[0].type = ROUTE_PRESET_EDIT;
+  submenu[0].type = ROUTE_PRESET_EDIT_DIGIPOTS;
   submenu[0].name = "Mix";
   submenu[0].param1 = MIX;
-  submenu[0].minVal = 0;
-  submenu[0].maxVal = 255;
 
-  submenu[1].type = ROUTE_PRESET_EDIT;
+  submenu[1].type = ROUTE_PRESET_EDIT_DIGIPOTS;
   submenu[1].name = "Delay";
   submenu[1].param1 = DELAY;
-  submenu[1].minVal = 0;
-  submenu[1].maxVal = 255;
 
-  submenu[2].type = ROUTE_PRESET_EDIT;
+  submenu[2].type = ROUTE_PRESET_EDIT_DIGIPOTS;
   submenu[2].name = "Feedback";
   submenu[2].param1 = FEEDBACK;
-  submenu[2].minVal = 0;
-  submenu[2].maxVal = 255;
 
-  submenu[3].name = "Channel";
-  submenu[3].type = ROUTE_PRESET_EDIT;
+  submenu[3].type = ROUTE_PRESET_EDIT_DIGIPOTS;
+  submenu[3].name = "MIDI Channel";
   submenu[3].param1 = 3;
-  submenu[3].minVal = 0;
-  submenu[3].maxVal = 16;
+  submenu[3].param2 = B00001111;
 
-  submenu[4].name = "Store";
-  submenu[4].type = ROUTE_DIALOG;
-  submenu[4].param1 = 0;
+  submenu[4].type = ROUTE_PRESET_EDIT_RELAYS;
+  submenu[4].name = "Amp Channel";
+  submenu[4].param1 = 3;
+  submenu[4].param2 = B00110000;
+  submenu[4].options[0] = "Clean";    // B00
+  submenu[4].options[1] = "Crunch";   // B01
+  submenu[4].options[2] = "Lead";     // B10
 
-  submenu[5].name = "Return";
-  submenu[5].type = ROUTE_GO_TO_MENU;
+  submenu[5].name = "Store";
+  submenu[5].type = ROUTE_PRESET_STORE;
   submenu[5].param1 = 0;
+  submenu[5].options[0] = "Yes";
+  submenu[5].options[1] = "No";
+
+  submenu[6].name = "Return";
+  submenu[6].type = ROUTE_GO_TO_ROUTE;
+  submenu[6].param1 = MENU_MAIN_VIEW;
 
   submenu_size = sizeof(submenu)/sizeof(menuItem);
 

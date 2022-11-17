@@ -4,9 +4,9 @@
 struct menuItem {
   char* name;
   byte type;
-  byte minVal;
-  byte maxVal;
   byte param1;
+  byte param2;
+  char* options[];
 };
 
 #endif
