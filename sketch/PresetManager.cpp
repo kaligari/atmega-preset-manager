@@ -37,12 +37,13 @@ void PresetManager::begin() {
   submenu[3].type = ROUTE_PRESET_EDIT_DIGIPOTS;
   submenu[3].name = "MIDI Ch.";
   submenu[3].param1 = 3;
-  submenu[3].param2 = B00001111;
+  submenu[3].param2 = 0;
+  submenu[3].options = 16;
 
   submenu[4].type = ROUTE_PRESET_EDIT_RELAYS;
   submenu[4].name = " Amp Ch.";
   submenu[4].param1 = 3;
-  submenu[4].param2 = B00110000;
+  submenu[4].param2 = 4;
   submenu[4].options = 3;
   submenu[4].option[0] = "Clean";    // B00
   submenu[4].option[1] = "Crunch";   // B01
@@ -78,8 +79,8 @@ void PresetManager::setDigiPots() {
 }
 
 void PresetManager::setRelays() {
-  digitalWrite(relay_1_pin, preset[3] >> 4);
-  digitalWrite(relay_2_pin, preset[3] >> 5);
+  digitalWrite(relay_1_pin, preset[submenu[submenu_state].param1] >> submenu[submenu_state].param2);
+  digitalWrite(relay_2_pin, preset[submenu[submenu_state].param1] >> submenu[submenu_state].param2 + 1);
 }
 
 void PresetManager::loop() {

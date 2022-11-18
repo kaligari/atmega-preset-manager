@@ -7,6 +7,7 @@ struct menuItem {
   byte param1;
   byte param2;
   byte options;
+  byte maxVal;
   char* option[8];
 };
 
