@@ -12,12 +12,15 @@
 #define ROUTE_PRESET_STORE 2
 #define ROUTE_GO_TO_ROUTE 3
 
-#define ROUTE_DIALOG_NO 0
-#define ROUTE_DIALOG_YES 1
+#define ROUTE_DIALOG_YES 0
+#define ROUTE_DIALOG_NO 1
 
 #define MIX 0
 #define DELAY 1
 #define FEEDBACK 2
+
+#define NUMBER 0
+#define OPTIONS 1
 
 #include <Arduino.h>
 #include <LiquidCrystal.h>

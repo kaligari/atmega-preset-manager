@@ -5,9 +5,11 @@ struct menuItem {
   char* name;
   byte type;
   byte param1;
-  byte param2;
+  byte bit_shift;
+  byte bit_mask;
+  byte bitMask;
   byte options;
-  byte maxVal;
+  byte presentation;
   char* option[8];
 };
 

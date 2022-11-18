@@ -34,27 +34,31 @@ void PresetManager::begin() {
   submenu[2].name = "Feedback";
   submenu[2].param1 = FEEDBACK;
 
-  submenu[3].type = ROUTE_PRESET_EDIT_DIGIPOTS;
+  submenu[3].type = ROUTE_PRESET_EDIT_RELAYS;
   submenu[3].name = "MIDI Ch.";
   submenu[3].param1 = 3;
-  submenu[3].param2 = 0;
+  submenu[3].bit_shift = 0;
+  submenu[3].bit_mask = B00001111;
   submenu[3].options = 16;
 
   submenu[4].type = ROUTE_PRESET_EDIT_RELAYS;
   submenu[4].name = " Amp Ch.";
-  submenu[4].param1 = 3;
-  submenu[4].param2 = 4;
-  submenu[4].options = 3;
+  submenu[4].param1 = 3;  // offset preset byte to edit 
+  submenu[4].bit_shift = 4;  // bite shift from preset byte
+  submenu[4].bit_mask = B00000011;
+  submenu[4].options = 3; // amount of options
   submenu[4].option[0] = "Clean";    // B00
   submenu[4].option[1] = "Crunch";   // B01
   submenu[4].option[2] = "Lead";     // B10
+  submenu[4].presentation = OPTIONS;
 
-  submenu[5].name = "Store";
   submenu[5].type = ROUTE_PRESET_STORE;
+  submenu[5].name = "Store";
   submenu[5].param1 = 0;
   submenu[5].options = 2;
   submenu[5].option[0] = "Yes";
   submenu[5].option[1] = "No";
+  submenu[5].presentation = OPTIONS;
 
   submenu[6].name = "Return";
   submenu[6].type = ROUTE_GO_TO_ROUTE;
@@ -64,6 +68,7 @@ void PresetManager::begin() {
 
   readPreset();
   setDigiPots();
+  setRelays();
 
   redraw = 1;
 }
@@ -78,9 +83,15 @@ void PresetManager::setDigiPots() {
   digipot->setValue(0, preset[MIX]);
 }
 
+/*
+ * Set relays pin state based on config byte value (3)
+ * B00110000
+ *    ||
+ *    ||-> relays pins
+ */
 void PresetManager::setRelays() {
-  digitalWrite(relay_1_pin, preset[submenu[submenu_state].param1] >> submenu[submenu_state].param2);
-  digitalWrite(relay_2_pin, preset[submenu[submenu_state].param1] >> submenu[submenu_state].param2 + 1);
+  digitalWrite(relay_1_pin, preset[3] >> 4 & B01);
+  digitalWrite(relay_2_pin, preset[3] >> 5 & B01);
 }
 
 void PresetManager::loop() {

@@ -13,6 +13,7 @@ void PresetManager::handleInput() {
       }
       readPreset();
       setDigiPots();
+      setRelays();
       redraw = 1;
     }
     if(encoder->check_ec_left() == 1) {
@@ -23,6 +24,7 @@ void PresetManager::handleInput() {
       }
       readPreset();
       setDigiPots();
+      setRelays();
       redraw = 1;
     }
     if(encoder->check_ec_push() == 1) {
@@ -57,6 +59,9 @@ void PresetManager::handleInput() {
       switch(submenu[submenu_state].type) {
         case ROUTE_GO_TO_ROUTE:
           menu_state = submenu[submenu_state].param1;
+          readPreset();
+          setDigiPots();
+          setRelays();
           break;
         default:
           menu_state = MENU_PRESET_EDIT;
@@ -79,13 +84,13 @@ void PresetManager::handleInput() {
           redraw = 1;
           break;
         case ROUTE_PRESET_EDIT_RELAYS:
-          if(submenu_dialog < submenu[submenu_state].options) {
+          if(submenu_dialog < submenu[submenu_state].options - 1) {
             submenu_dialog++;
           } else {
             submenu_dialog = 0;
           }
           // set relays bits in to preset byte
-          preset[submenu[submenu_state].param1] = submenu_dialog | submenu[submenu_state].param2;
+          preset[submenu[submenu_state].param1] = (submenu_dialog & submenu[submenu_state].bit_mask) << submenu[submenu_state].bit_shift;
           setRelays();
           redraw = 1;
           break;
@@ -109,7 +114,7 @@ void PresetManager::handleInput() {
             submenu_dialog = submenu[submenu_state].options - 1;
           }
           // set relays bits in to preset byte
-          preset[submenu[submenu_state].param1] = submenu_dialog | submenu[submenu_state].param2;
+          preset[submenu[submenu_state].param1] = (submenu_dialog & submenu[submenu_state].bit_mask) << submenu[submenu_state].bit_shift;
           setRelays();
           redraw = 1;
           break;
@@ -130,6 +135,7 @@ void PresetManager::handleInput() {
           if(submenu_dialog == ROUTE_DIALOG_NO) {
             readPreset();
             setDigiPots();
+            setRelays();
             menu_state = MENU_PRESET_VIEW;
           }
           break;
