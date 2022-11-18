@@ -1,10 +1,15 @@
 #include <LiquidCrystal.h>
 #include "PresetManager.h"
 
-PresetManager::PresetManager(LiquidCrystal* i_lcd, Encoder* i_encoder, DigiPot* i_digipot) {
+PresetManager::PresetManager(LiquidCrystal* i_lcd, Encoder* i_encoder, DigiPot* i_digipot, byte i_relay_1_pin, byte i_relay_2_pin) {
     lcd = i_lcd;
     encoder = i_encoder;
     digipot = i_digipot;
+    relay_1_pin = i_relay_1_pin;
+    relay_2_pin = i_relay_2_pin;
+
+    pinMode(relay_1_pin, OUTPUT);
+    pinMode(relay_2_pin, OUTPUT);
   }
 
 void PresetManager::begin() {
@@ -34,7 +39,7 @@ void PresetManager::begin() {
   submenu[3].param1 = 3;
   submenu[3].param2 = B00001111;
 
-  submenu[4].type = ROUTE_PRESET_EDIT_DIGIPOTS;
+  submenu[4].type = ROUTE_PRESET_EDIT_RELAYS;
   submenu[4].name = " Amp Ch.";
   submenu[4].param1 = 3;
   submenu[4].param2 = B00110000;
@@ -70,6 +75,11 @@ void PresetManager::setDigiPots() {
   // Daisy chaining - device 1
   digipot->setValue(1, preset[DELAY]);
   digipot->setValue(0, preset[MIX]);
+}
+
+void PresetManager::setRelays() {
+  digitalWrite(relay_1_pin, preset[3] >> 4);
+  digitalWrite(relay_2_pin, preset[3] >> 5);
 }
 
 void PresetManager::loop() {

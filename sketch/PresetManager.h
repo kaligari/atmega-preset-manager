@@ -34,7 +34,7 @@ extern MIDI_NAMESPACE::MidiInterface<MIDI_NAMESPACE::SerialMIDI<HardwareSerial>>
 
 class PresetManager {
   public:
-    PresetManager(LiquidCrystal* i_lcd, Encoder* i_encoder, DigiPot* i_digipot);
+    PresetManager(LiquidCrystal* i_lcd, Encoder* i_encoder, DigiPot* i_digipot, byte i_relay_1_pin, byte i_relay_2_pin);
     void begin();
     void loop();
   private:
@@ -44,6 +44,8 @@ class PresetManager {
 
     byte preset_number = 0;
     byte preset[4] = { 0, 0, 0, 0 };
+    byte relay_1_pin;
+    byte relay_2_pin;
     byte redraw = 0;
     byte menu_state = 0;
     byte submenu_state = 0;
@@ -56,10 +58,12 @@ class PresetManager {
 
     void handleInput();
     void setDigiPots();
+    void setRelays();
 
-    // EEPROM
+    // Memory
     void readPreset();
     void storePreset();
+    // void setPresetWithMask(byte value, byte preset_element, byte mask);
 
     // MIDI
     void readMIDI();

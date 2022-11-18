@@ -1,6 +1,9 @@
 #include "PresetManager.h"
 
 void PresetManager::handleInput() {
+  /**
+   * MENU_MAIN_VIEW
+   **/
   if(menu_state == MENU_MAIN_VIEW) {
     if(encoder->check_ec_right() == 1) {
       if(preset_number < 99) {
@@ -55,12 +58,9 @@ void PresetManager::handleInput() {
         case ROUTE_GO_TO_ROUTE:
           menu_state = submenu[submenu_state].param1;
           break;
-        case ROUTE_PRESET_STORE:
-          menu_state = MENU_PRESET_EDIT;
-          submenu_dialog = ROUTE_DIALOG_YES;
-          break;
         default:
           menu_state = MENU_PRESET_EDIT;
+          submenu_dialog = 0;
         
       }
       redraw = 1;
@@ -78,6 +78,17 @@ void PresetManager::handleInput() {
           setDigiPots();
           redraw = 1;
           break;
+        case ROUTE_PRESET_EDIT_RELAYS:
+          if(submenu_dialog < submenu[submenu_state].options) {
+            submenu_dialog++;
+          } else {
+            submenu_dialog = 0;
+          }
+          // set relays bits in to preset byte
+          preset[submenu[submenu_state].param1] = submenu_dialog | submenu[submenu_state].param2;
+          setRelays();
+          redraw = 1;
+          break;
         case ROUTE_PRESET_STORE:
           submenu_dialog = !submenu_dialog;
           redraw = 1;
@@ -89,6 +100,17 @@ void PresetManager::handleInput() {
         case ROUTE_PRESET_EDIT_DIGIPOTS:
           preset[submenu[submenu_state].param1]--;
           setDigiPots();
+          redraw = 1;
+          break;
+        case ROUTE_PRESET_EDIT_RELAYS:
+          if(submenu_dialog > 0) {
+            submenu_dialog--;
+          } else {
+            submenu_dialog = submenu[submenu_state].options - 1;
+          }
+          // set relays bits in to preset byte
+          preset[submenu[submenu_state].param1] = submenu_dialog | submenu[submenu_state].param2;
+          setRelays();
           redraw = 1;
           break;
         case ROUTE_PRESET_STORE:

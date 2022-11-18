@@ -56,49 +56,29 @@ void PresetManager::drawMenuHeader() {
 }
 
 void PresetManager::drawMenuValue() {
-  /***
-  * ROUTE_PRESET_EDIT
-  ***/
-  // if(submenu[submenu_state].type == ROUTE_PRESET_EDIT_DIGIPOTS) {
-    // size of string in array: num = sizeof(names) / sizeof(names[0]);
-    if(submenu[submenu_state].options > 0) {
-      byte startChar = (10 - strlen(submenu[submenu_state].option[submenu_dialog])) / 2;
-      lcd->setCursor(5 + startChar, 1);
-      lcd->print(submenu[submenu_state].option[submenu_dialog]);
-    } else {
-      byte current_value = preset[submenu[submenu_state].param1];
-      byte digitLength = preset[submenu[submenu_state].param1];
-      byte count = 0;
-      do {
-        digitLength /= 10;
-        ++count;
-      } while (digitLength != 0);
-      byte startChar = (10 - count) / 2;
-      lcd->setCursor(5 + startChar, 1);
-      lcd->print(preset[submenu[submenu_state].param1]);
-    }
-    if(menu_state == MENU_PRESET_EDIT) {
-      lcd->setCursor(4, 1);
-      lcd->print("<");
-      lcd->setCursor(15, 1);
-      lcd->print(">");
-    }
-  // }
-  /***
-  * ROUTE_PRESET_STORE
-  ***/
-  // if(submenu[submenu_state].type == ROUTE_PRESET_STORE) {
-  //   lcd->setCursor(8, 1);
-  //   lcd->print(submenu[submenu_state].option[submenu_dialog]);
-  //   // if(submenu_dialog == ROUTE_DIALOG_YES) {
-  //   //   lcd->setCursor(8, 1);
-  //   //   lcd->print("Yes");
-  //   // }
-  //   // if(submenu_dialog == ROUTE_DIALOG_NO) {
-  //   //   lcd->setCursor(8, 1);
-  //   //   lcd->print("No");
-  //   // }
-  // }
+  if(submenu[submenu_state].options > 0) {
+    byte startChar = (10 - strlen(submenu[submenu_state].option[submenu_dialog])) / 2;
+    lcd->setCursor(5 + startChar, 1);
+    // lcd->print(submenu[submenu_state].option[submenu_dialog]);
+    lcd->print(preset[submenu[submenu_state].param1]);
+  } else {
+    byte current_value = preset[submenu[submenu_state].param1];
+    byte digitLength = preset[submenu[submenu_state].param1];
+    byte count = 0;
+    do {
+      digitLength /= 10;
+      ++count;
+    } while (digitLength != 0);
+    byte startChar = (10 - count) / 2;
+    lcd->setCursor(5 + startChar, 1);
+    lcd->print(preset[submenu[submenu_state].param1]);
+  }
+  if(menu_state == MENU_PRESET_EDIT) {
+    lcd->setCursor(4, 1);
+    lcd->print("<");
+    lcd->setCursor(15, 1);
+    lcd->print(">");
+  }
 }
 
 void PresetManager::drawMainView() {
