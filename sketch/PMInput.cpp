@@ -90,7 +90,7 @@ void PresetManager::handleInput() {
             submenu_dialog = 0;
           }
           // set relays bits in to preset byte
-          preset[submenu[submenu_state].param1] = (submenu_dialog & submenu[submenu_state].bit_mask) << submenu[submenu_state].bit_shift;
+          preset[submenu[submenu_state].param1] = ((submenu_dialog & submenu[submenu_state].bit_mask) << submenu[submenu_state].bit_shift) | (preset[submenu[submenu_state].param1] & ~(submenu[submenu_state].bit_mask << submenu[submenu_state].bit_shift));
           setRelays();
           redraw = 1;
           break;
@@ -114,7 +114,7 @@ void PresetManager::handleInput() {
             submenu_dialog = submenu[submenu_state].options - 1;
           }
           // set relays bits in to preset byte
-          preset[submenu[submenu_state].param1] = (submenu_dialog & submenu[submenu_state].bit_mask) << submenu[submenu_state].bit_shift;
+          preset[submenu[submenu_state].param1] = ((submenu_dialog & submenu[submenu_state].bit_mask) << submenu[submenu_state].bit_shift) | (preset[submenu[submenu_state].param1] & ~(submenu[submenu_state].bit_mask << submenu[submenu_state].bit_shift));
           setRelays();
           redraw = 1;
           break;
