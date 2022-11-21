@@ -1,0 +1,225 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L MCU_Microchip_ATmega:ATmega328P-PU U?
+U 1 1 637B5CE6
+P 2200 4550
+F 0 "U?" H 1556 4596 50  0000 R CNN
+F 1 "ATmega328P-PU" H 1556 4505 50  0000 R CNN
+F 2 "Package_DIP:DIP-28_W7.62mm" H 2200 4550 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega328_P%20AVR%20MCU%20with%20picoPower%20Technology%20Data%20Sheet%2040001984A.pdf" H 2200 4550 50  0001 C CNN
+	1    2200 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Regulator_Linear:L7805 U?
+U 1 1 637B6BED
+P 1850 1350
+F 0 "U?" H 1850 1592 50  0000 C CNN
+F 1 "L7805" H 1850 1501 50  0000 C CNN
+F 2 "" H 1875 1200 50  0001 L CIN
+F 3 "http://www.st.com/content/ccc/resource/technical/document/datasheet/41/4f/b3/b0/12/d4/47/88/CD00000444.pdf/files/CD00000444.pdf/jcr:content/translations/en.CD00000444.pdf" H 1850 1300 50  0001 C CNN
+	1    1850 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+9V #PWR?
+U 1 1 637B772F
+P 1550 950
+F 0 "#PWR?" H 1550 800 50  0001 C CNN
+F 1 "+9V" H 1565 1123 50  0000 C CNN
+F 2 "" H 1550 950 50  0001 C CNN
+F 3 "" H 1550 950 50  0001 C CNN
+	1    1550 950 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1550 950  1550 1350
+$Comp
+L power:GND #PWR?
+U 1 1 637B8059
+P 1850 1650
+F 0 "#PWR?" H 1850 1400 50  0001 C CNN
+F 1 "GND" H 1855 1477 50  0000 C CNN
+F 2 "" H 1850 1650 50  0001 C CNN
+F 3 "" H 1850 1650 50  0001 C CNN
+	1    1850 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 637BD94B
+P 2200 6050
+F 0 "#PWR?" H 2200 5800 50  0001 C CNN
+F 1 "GND" H 2205 5877 50  0000 C CNN
+F 2 "" H 2200 6050 50  0001 C CNN
+F 3 "" H 2200 6050 50  0001 C CNN
+	1    2200 6050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Isolator:6N138 U?
+U 1 1 637BF9F3
+P 6350 1800
+F 0 "U?" H 6350 2267 50  0000 C CNN
+F 1 "6N138" H 6350 2176 50  0000 C CNN
+F 2 "" H 6640 1500 50  0001 C CNN
+F 3 "http://www.onsemi.com/pub/Collateral/HCPL2731-D.pdf" H 6640 1500 50  0001 C CNN
+	1    6350 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:DIN-5 J?
+U 1 1 637C6EBD
+P 4700 1100
+F 0 "J?" H 4700 825 50  0000 C CNN
+F 1 "DIN-5" H 4700 734 50  0000 C CNN
+F 2 "" H 4700 1100 50  0001 C CNN
+F 3 "http://www.mouser.com/ds/2/18/40_c091_abd_e-75918.pdf" H 4700 1100 50  0001 C CNN
+	1    4700 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 1000 5000 1000
+Wire Wire Line
+	4400 1000 4250 1000
+Wire Wire Line
+	4250 1000 4250 1900
+$Comp
+L Device:R R1
+U 1 1 637CB73A
+P 5350 1150
+F 0 "R1" H 5420 1196 50  0000 L CNN
+F 1 "220" H 5420 1105 50  0000 L CNN
+F 2 "" V 5280 1150 50  0001 C CNN
+F 3 "~" H 5350 1150 50  0001 C CNN
+	1    5350 1150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5350 1300 5350 1600
+Wire Wire Line
+	4250 1900 5350 1900
+$Comp
+L Diode:1N4001 D?
+U 1 1 637D3EE2
+P 5350 1750
+F 0 "D?" H 5350 1966 50  0000 C CNN
+F 1 "1N4001" H 5350 1875 50  0000 C CNN
+F 2 "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" H 5350 1575 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 5350 1750 50  0001 C CNN
+	1    5350 1750
+	0    1    1    0   
+$EndComp
+Connection ~ 5350 1600
+Connection ~ 5350 1900
+Wire Wire Line
+	5350 1900 6050 1900
+Wire Wire Line
+	5350 1600 5350 1700
+Wire Wire Line
+	5350 1600 6050 1600
+Wire Wire Line
+	6050 1600 6050 1700
+$Comp
+L power:+5V #PWR?
+U 1 1 637E4FE6
+P 7000 1100
+F 0 "#PWR?" H 7000 950 50  0001 C CNN
+F 1 "+5V" H 7015 1273 50  0000 C CNN
+F 2 "" H 7000 1100 50  0001 C CNN
+F 3 "" H 7000 1100 50  0001 C CNN
+	1    7000 1100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 637E6EFF
+P 7000 1250
+F 0 "R2" H 7070 1296 50  0000 L CNN
+F 1 "220" H 7070 1205 50  0000 L CNN
+F 2 "" V 6930 1250 50  0001 C CNN
+F 3 "~" H 7000 1250 50  0001 C CNN
+	1    7000 1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7000 1100 6650 1100
+Wire Wire Line
+	6650 1100 6650 1600
+Connection ~ 7000 1100
+$Comp
+L power:GND #PWR?
+U 1 1 637EB289
+P 7000 2000
+F 0 "#PWR?" H 7000 1750 50  0001 C CNN
+F 1 "GND" H 7005 1827 50  0000 C CNN
+F 2 "" H 7000 2000 50  0001 C CNN
+F 3 "" H 7000 2000 50  0001 C CNN
+	1    7000 2000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6650 2000 7000 2000
+Wire Wire Line
+	6650 1900 7000 1900
+Wire Wire Line
+	7000 1900 7000 1400
+$Comp
+L power:GND #PWR?
+U 1 1 637EC336
+P 6750 2500
+F 0 "#PWR?" H 6750 2250 50  0001 C CNN
+F 1 "GND" H 6755 2327 50  0000 C CNN
+F 2 "" H 6750 2500 50  0001 C CNN
+F 3 "" H 6750 2500 50  0001 C CNN
+	1    6750 2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6750 1700 6650 1700
+$Comp
+L Device:R R?
+U 1 1 637EC96D
+P 6750 2350
+F 0 "R?" H 6820 2396 50  0000 L CNN
+F 1 "R" H 6820 2305 50  0000 L CNN
+F 2 "" V 6680 2350 50  0001 C CNN
+F 3 "~" H 6750 2350 50  0001 C CNN
+	1    6750 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6750 1700 6750 2200
+Wire Wire Line
+	2800 5050 7250 5050
+Wire Wire Line
+	7250 5050 7250 1900
+Wire Wire Line
+	7250 1900 7000 1900
+Connection ~ 7000 1900
+$Comp
+L Isolator:PC817 U?
+U 1 1 637F5C6D
+P 9350 3950
+F 0 "U?" H 9350 4275 50  0000 C CNN
+F 1 "PC817" H 9350 4184 50  0000 C CNN
+F 2 "Package_DIP:DIP-4_W7.62mm" H 9150 3750 50  0001 L CIN
+F 3 "http://www.soselectronic.cz/a_info/resource/d/pc817.pdf" H 9350 3950 50  0001 L CNN
+	1    9350 3950
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
