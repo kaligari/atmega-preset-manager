@@ -10,7 +10,7 @@ struct menuItem {
   byte bitMask;
   byte options;
   byte presentation;
-  char* option[8];
+  char* option[4];
 };
 
 #endif

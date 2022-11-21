@@ -92,14 +92,22 @@ void PresetManager::drawMenuValue() {
 }
 
 void PresetManager::drawMainView() {
+  
+  byte ctrl_1 = preset[3] >> 0 & B111;
+  byte ctrl_2 = preset[3] >> 3 & B111;
+
   lcd->setCursor(5, 0);
   lcd->print("Mix Dly Fbk");
-  lcd->setCursor(5, 1);
-  lcd->print(preset[0]);
-  lcd->setCursor(9, 1);
-  lcd->print(preset[1]);
-  lcd->setCursor(13, 1);
-  lcd->print(preset[2]);
+  for(byte i = 0; i < 3; i++) {
+    lcd->setCursor(5 + i * 4, 1);
+    if(ctrl_1 == i + 1) {
+      lcd->print("C#1");
+    } else if(ctrl_2 == i + 1) {
+      lcd->print("C#2");
+    } else {
+      lcd->print(preset[i]);
+    }
+  }
 }
 
 void PresetManager::refreshScreen() {

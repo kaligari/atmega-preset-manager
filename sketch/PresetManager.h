@@ -19,6 +19,8 @@
 #define DELAY 1
 #define FEEDBACK 2
 
+#define DIGIPOTS_TOTAL 3
+
 #define NUMBER 0
 #define OPTIONS 1
 
@@ -54,7 +56,7 @@ class PresetManager {
     byte submenu_state = 0;
     byte submenu_size = 0;
     byte submenu_dialog = ROUTE_DIALOG_YES;
-    struct menuItem submenu[7];
+    struct menuItem submenu[8];
 
     // char* switchMenu[3] = ["Clean", "Crunch", "Solo"];
     // char* saveMenu[3] = ["Yes", "No"];

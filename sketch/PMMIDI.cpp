@@ -11,26 +11,34 @@ void PresetManager::readMIDI() {
               break;
             case midi::ControlChange:
               if(MIDI.getData1() == 27) {
-                preset[DELAY] = MIDI.getData2() * 2;
-                // digipot->setValue(0, preset[0]);
+                byte ctrl_config = (preset[3] >> 0) & B111;
+                if(ctrl_config == 0 || ctrl_config > DIGIPOTS_TOTAL) {
+                  return;
+                }
+                preset[ctrl_config - 1] = MIDI.getData2() * 2;
                 setDigiPots();
               }
               if(MIDI.getData1() == 7) {
-                preset[FEEDBACK] = MIDI.getData2() * 2;
+                byte ctrl_config = (preset[3] >> 3) & B111;
+                if(ctrl_config == 0 || ctrl_config > DIGIPOTS_TOTAL) {
+                  return;
+                }
+                preset[ctrl_config - 1] = MIDI.getData2() * 2;
                 setDigiPots();
               }
-              if(MIDI.getData1() == 1) {
-                preset[MIX] = MIDI.getData2();
-                redraw = 1;
-              }
-              if(MIDI.getData1() == 2) {
-                preset[DELAY] = MIDI.getData2();
-                redraw = 1;
-              }
-              if(MIDI.getData1() == 3) {
-                preset[FEEDBACK] = MIDI.getData2();
-                redraw = 1;
-              }
+              // Control change
+              // if(MIDI.getData1() == 1) {
+              //   preset[MIX] = MIDI.getData2();
+              //   redraw = 1;
+              // }
+              // if(MIDI.getData1() == 2) {
+              //   preset[DELAY] = MIDI.getData2();
+              //   redraw = 1;
+              // }
+              // if(MIDI.getData1() == 3) {
+              //   preset[FEEDBACK] = MIDI.getData2();
+              //   redraw = 1;
+              // }
               break;
             default:
               break;
