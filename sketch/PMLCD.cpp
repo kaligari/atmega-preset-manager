@@ -3,9 +3,9 @@
 void PresetManager::LCDBegin() {
   lcd->begin(16, 2);
   lcd->setCursor(0, 0);
-  lcd->print("Multiefekt");
+  lcd->print("Shaley Dly/Sw");
   lcd->setCursor(0, 1);
-  lcd->print("v1.3.2137");
+  lcd->print("v1.0.2137");
   delay(1000);
   lcd->clear();
 }

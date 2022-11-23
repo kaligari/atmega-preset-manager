@@ -17,6 +17,9 @@ void PresetManager::readMIDI() {
                 }
                 preset[ctrl_config - 1] = MIDI.getData2() * 2;
                 setDigiPots();
+                if(menu_state == MENU_PRESET_EDIT || menu_state == MENU_PRESET_VIEW) {
+                  redraw = 1;
+                }
               }
               if(MIDI.getData1() == 7) {
                 byte ctrl_config = (preset[3] >> 3) & B111;
@@ -25,6 +28,9 @@ void PresetManager::readMIDI() {
                 }
                 preset[ctrl_config - 1] = MIDI.getData2() * 2;
                 setDigiPots();
+                if(menu_state == MENU_PRESET_EDIT || menu_state == MENU_PRESET_VIEW) {
+                  redraw = 1;
+                }
               }
               // Control change
               // if(MIDI.getData1() == 1) {
