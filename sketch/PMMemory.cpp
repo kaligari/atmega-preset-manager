@@ -12,6 +12,15 @@ void PresetManager::storePreset() {
   }
 }
 
+void PresetManager::resetPresets() {
+  for(byte preset = 0; preset < 100; preset++) {
+    EEPROM.update(preset * 4 + 0, 128);
+    EEPROM.update(preset * 4 + 1, 128);
+    EEPROM.update(preset * 4 + 2, 128);
+    EEPROM.update(preset * 4 + 3, 0);
+  }
+}
+
 // void PresetManager::setPresetWithMask(byte value, byte mask) {
 //   preset[3] = value | mask;
 // }

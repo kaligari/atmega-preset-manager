@@ -11,6 +11,7 @@
 #define ROUTE_PRESET_EDIT_RELAYS 1
 #define ROUTE_PRESET_STORE 2
 #define ROUTE_GO_TO_ROUTE 3
+#define ROUTE_RESET_ALL 4
 
 #define ROUTE_DIALOG_YES 0
 #define ROUTE_DIALOG_NO 1
@@ -56,7 +57,7 @@ class PresetManager {
     byte submenu_state = 0;
     byte submenu_size = 0;
     byte submenu_dialog = ROUTE_DIALOG_YES;
-    struct menuItem submenu[8];
+    struct menuItem submenu[9];
 
     // char* switchMenu[3] = ["Clean", "Crunch", "Solo"];
     // char* saveMenu[3] = ["Yes", "No"];
@@ -68,6 +69,7 @@ class PresetManager {
     // Memory
     void readPreset();
     void storePreset();
+    void resetPresets();
     // void setPresetWithMask(byte value, byte preset_element, byte mask);
 
     // MIDI

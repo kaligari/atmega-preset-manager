@@ -3,9 +3,9 @@
 void PresetManager::LCDBegin() {
   lcd->begin(16, 2);
   lcd->setCursor(0, 0);
-  lcd->print("Shaley Dly/Sw");
+  lcd->print("SHLY-2137");
   lcd->setCursor(0, 1);
-  lcd->print("v1.0.2137");
+  lcd->print("v1.0.1");
   delay(1000);
   lcd->clear();
 }
@@ -62,7 +62,9 @@ void PresetManager::drawMenuValue() {
     lcd->setCursor(15, 1);
     lcd->print(">");
   } else {
-    if(submenu[submenu_state].type == ROUTE_PRESET_STORE || submenu[submenu_state].type == ROUTE_GO_TO_ROUTE) {
+    if(submenu[submenu_state].type == ROUTE_PRESET_STORE
+    || submenu[submenu_state].type == ROUTE_GO_TO_ROUTE
+    || submenu[submenu_state].type == ROUTE_RESET_ALL) {
       return;
     }
   }

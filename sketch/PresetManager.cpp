@@ -77,9 +77,17 @@ void PresetManager::begin() {
   submenu[6].option[0] = "Yes";
   submenu[6].option[1] = "No";
 
-  submenu[7].name = "Return";
-  submenu[7].type = ROUTE_GO_TO_ROUTE;
-  submenu[7].param1 = MENU_MAIN_VIEW;
+  submenu[7].type = ROUTE_RESET_ALL;
+  submenu[7].name = "Reset all";
+  submenu[7].presentation = OPTIONS;
+  submenu[7].param1 = 0;
+  submenu[7].options = 2;
+  submenu[7].option[0] = "Yes";
+  submenu[7].option[1] = "No";
+
+  submenu[8].name = "Return";
+  submenu[8].type = ROUTE_GO_TO_ROUTE;
+  submenu[8].param1 = MENU_MAIN_VIEW;
 
   submenu_size = sizeof(submenu)/sizeof(menuItem);
 
@@ -102,9 +110,9 @@ void PresetManager::setDigiPots() {
 
 /*
  * Set relays pin state based on config byte value (3)
- * B00110000
- *    ||
- *    ||-> relays pins
+ * B11000000
+ *  ||
+ *  ||-> relays pins
  */
 void PresetManager::setRelays() {
   digitalWrite(relay_1_pin, preset[3] >> 6 & B01);
